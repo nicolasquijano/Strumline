@@ -50,7 +50,7 @@ the same track, or send the MIDI to another track) before the converter exists. 
 
 ## Linux and macOS
 
-The code is written for Windows, macOS and Linux (JUCE, plus the engine in `engine/`, which uses only standard C++). **Only the Windows build has been run so far**: the other two
+The code is written for Windows, macOS and Linux (JUCE, plus the engine in `engine/`, which uses only standard C++). **Windows is the one tried by hand**; the other two
 are checked by the GitHub Actions workflow `.github/workflows/build.yml` (it builds all three and runs `strumline_check`), which runs once the project is pushed to GitHub.
 
 ```sh

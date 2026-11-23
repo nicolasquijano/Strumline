@@ -7,7 +7,7 @@ All notable changes to Strumline. The format follows [Keep a Changelog](https://
 
 ## [0.1.0-beta] - 2026-11-23
 
-First release. Windows only (VST3 and standalone); the code is written for Linux and macOS too but only the Windows build has been run.
+First release, for Windows (VST3 and standalone, tried by hand), Linux (x86_64) and macOS (Apple Silicon). The Linux and macOS packages are built and checked (`strumline_check`) by GitHub Actions but have not been tried in a DAW yet.
 
 ### Added
 - **Guitar to MIDI in real time** from an ordinary electric guitar:
@@ -17,7 +17,7 @@ First release. Windows only (VST3 and standalone); the code is written for Linux
 - Output: MIDI channel, transpose, velocity curve, pitch bend off / channel; a built-in monitor synth (sine, saw, square); THRU for the guitar; a TEST script; PANIC.
 - Interface: relief style with the logo, input level with the sensitivity mark, the six strings, a piano roll of the last 12 seconds with the pitch bend lane, latency of the note and of the chord,
   load of the chord model, presets, tooltips, and **ten languages** (English, Spanish, Portuguese, Italian, Chinese, French, German, Japanese, Russian, Korean; Auto follows the system).
-- A Windows installer (VST3 for all users or only the current user, standalone, Start menu entry) and a zip.
+- Packages for the three systems: a Windows installer (VST3 for all users or only the current user, standalone, Start menu entry) and zip; a Linux tar.gz; a macOS zip (ad-hoc signed, not notarized: see INSTALL.txt).
 
 ### Known limitations
 - Chord latency is 80 to 100 ms, above the 30 to 60 ms goal; getting there needs a causal model of our own.
@@ -25,7 +25,7 @@ First release. Windows only (VST3 and standalone); the code is written for Linux
 - MPE (a pitch bend per note) is not written: "MPE" sends like "Channel".
 - On GuitarSet recordings (microphone, not an interface) the F measure is about 0.72 for chords and 0.77 for solos in Poly mode.
 - The translations have not been reviewed by native speakers.
-- Linux and macOS: not built or tested yet (a GitHub Actions workflow is set up). The ONNX Runtime package has no Intel-Mac library, so there the chord converter would be left out.
+- Linux and macOS: built and checked by CI but not tried in a DAW. The macOS build is for Apple Silicon only (the ONNX Runtime package has no Intel-Mac library, so an Intel Mac would play one note at a time) and is not notarized.
 - The installer is not code-signed, so Windows SmartScreen may warn the first time.
 
 [Unreleased]: https://github.com/nicolasquijano/Strumline/compare/v0.1.0-beta...HEAD
