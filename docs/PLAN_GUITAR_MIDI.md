@@ -304,3 +304,11 @@ vez de un evento de Windows; CMake elige la biblioteca por sistema (`onnxruntime
 máquina es Windows, no hay WSL, compilador de Linux ni Mac, así que lo de Linux y macOS (la compilación, la carga de la biblioteca, que el paquete NuGet traiga cada sistema
 con el nombre esperado, JUCE en esos sistemas) se verifica con `.github/workflows/build.yml` cuando el proyecto esté en GitHub. Pendiente aparte: binario universal de macOS,
 firma y notarización, formato Audio Unit, y LV2 en Linux. **Verificado en Windows (2026-11-23):** `tools/fetch_onnxruntime.cmake` baja y ordena el paquete (encontró que el paquete 1.32 no trae `osx-x64`, solo win-x64, linux-x64, linux-arm64 y osx-arm64; los nombres `libonnxruntime.so` y `.dylib` son los esperados) y CMake detecta la carpeta nueva (`runtimes/win-x64/native`). En un Mac Intel el convertidor de acordes queda apagado.
+
+### Idiomas (2026-11-23)
+La interfaz está en diez idiomas, con el mismo sistema que Schematic Amp Sim: inglés, español, portugués, italiano, chino simplificado, francés, alemán, japonés, ruso y coreano, más
+Auto (sigue el idioma del sistema). Los textos del código están en inglés y `tr("...")` da el del idioma en uso, o el inglés si falta (`plugin/I18n.*`, una tabla por idioma en
+`plugin/I18nXx.cpp`). Se elige en el cuadro de la esquina del panel MONITOR y se aplica al instante; la elección se guarda en `Strumline/language.txt` de la carpeta de datos del
+usuario. Los nombres de los parámetros (lo que ve el host) quedan en inglés. Los textos largos de los rótulos se acortaron para que entren en los controles (se vio en capturas de
+`strumline_shot <png> <idioma>`). **Las traducciones las escribí yo, sin revisión de hablantes nativos**: conviene que alguien las lea, sobre todo los tooltips. `strumline_check`
+comprueba que todos los idiomas traducen la misma cantidad de textos y que los que faltan caen al inglés.

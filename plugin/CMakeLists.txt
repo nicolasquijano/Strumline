@@ -69,7 +69,10 @@ else()
   message(STATUS "Strumline: chord converter OFF (no ONNX Runtime for ${_ort_rid} in ${STRUMLINE_ORT_DIR}); one-note converter only")
 endif()
 
-target_sources(Strumline PRIVATE StrumlineProcessor.cpp StrumlineEditor.cpp StrumlineProcessor.h StrumlineEditor.h)
+target_sources(Strumline PRIVATE StrumlineProcessor.cpp StrumlineEditor.cpp StrumlineProcessor.h StrumlineEditor.h I18n.cpp I18n.h I18nEs.cpp I18nPt.cpp I18nIt.cpp
+  I18nZh.cpp I18nFr.cpp I18nDe.cpp I18nJa.cpp I18nRu.cpp I18nKo.cpp)
+# The translations are UTF-8 source files.
+target_compile_options(Strumline PUBLIC "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 target_include_directories(Strumline PRIVATE ${CMAKE_SOURCE_DIR}/engine)
 target_compile_definitions(Strumline PUBLIC JUCE_WEB_BROWSER=0 JUCE_USE_CURL=0 JUCE_VST3_CAN_REPLACE_VST2=0 JUCE_DISPLAY_SPLASH_SCREEN=0)
 target_link_libraries(Strumline PRIVATE juce::juce_audio_utils juce::juce_recommended_config_flags)

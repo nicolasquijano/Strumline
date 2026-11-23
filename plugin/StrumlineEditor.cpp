@@ -1,5 +1,7 @@
 #include "StrumlineEditor.h"
 
+#include "I18n.h"
+
 #include <algorithm>
 #include <cmath>
 
@@ -166,47 +168,76 @@ StrumlineEditor::StrumlineEditor(StrumlineProcessor& p)
     addKnob(level_, ids::level, levelAtt_);
     sens_.textFromValueFunction = [](double v) { return juce::String(int(v)) + " dB"; };
     lookahead_.textFromValueFunction = [](double v) { return juce::String(int(v)) + " ms"; };
-    velocity_.textFromValueFunction = [](double v) { return juce::StringArray{"soft", "normal", "hard"}[juce::jlimit(0, 2, int(v + 0.5))]; };
+    velocity_.textFromValueFunction = [](double v) { return tr(juce::StringArray{"soft", "normal", "hard"}[juce::jlimit(0, 2, int(v + 0.5))]); };
     channel_.textFromValueFunction = [](double v) { return juce::String(int(v)); };
     transpose_.textFromValueFunction = [](double v) { return (v > 0 ? "+" : "") + juce::String(int(v)) + " st"; };
     level_.textFromValueFunction = [](double v) { return juce::String(int(v)) + " dB"; };
-    for (auto* s : {&sens_, &lookahead_, &velocity_, &channel_, &transpose_, &level_}) s->updateText();
 
-    for (auto* c : std::initializer_list<juce::Component*>{&mode_, &bend_, &wave_, &thru_, &synth_, &test_, &perf_, &preset_, &panic_}) addAndMakeVisible(c);
+    for (auto* c : std::initializer_list<juce::Component*>{&mode_, &bend_, &wave_, &thru_, &synth_, &test_, &perf_, &preset_, &panic_, &language_}) addAndMakeVisible(c);
 
     // Presets: a click sets the mode and the detection knobs together, then the box goes back to its title.
-    preset_.addItem("Solo lines (one note, fastest)", 1);
-    preset_.addItem("Fast hybrid (45 ms look-ahead)", 2);
-    preset_.addItem("Chords (Poly, 60 ms)", 3);
-    preset_.addItem("Low CPU (Hybrid, saver)", 4);
-    preset_.setTextWhenNothingSelected("Preset...");
     preset_.onChange = [this] {
         if (preset_.getSelectedId() > 0) applyPreset(preset_.getSelectedId());
         preset_.setSelectedId(0, juce::dontSendNotification);
     };
     panic_.onClick = [this] { p_.panic(); };
 
-    // What each control does, for the hover.
-    sens_.setTooltip("How loud the guitar must be to count as playing. The white mark on the input level shows it: set it just above the noise");
-    lookahead_.setTooltip("How much of the future the chord converter may hear before it decides: less is faster but makes more mistakes (marks at 35, 45 and 60 ms)");
-    velocity_.setTooltip("The curve from how hard you pluck to the MIDI velocity: soft lifts quiet notes, hard asks for more");
-    channel_.setTooltip("The MIDI channel the notes go out on");
-    transpose_.setTooltip("Shifts every note, in semitones");
-    level_.setTooltip("The level of the monitor synth");
-    mode_.setTooltip("Mono: one note at a time, the fastest. Poly: chords (Basic Pitch), about 80 to 100 ms. Hybrid: the first note fast, the rest of the chord after it");
-    bend_.setTooltip("Off: no pitch wheel. Channel: one pitch wheel for the channel. MPE: not written yet (sends like Channel)");
-    perf_.setTooltip("Chord rate. Fast: the chord model runs every 35 ms. Saver: every 46 ms, a third less CPU and about 8 ms later");
-    thru_.setTooltip("The guitar goes on to the output, so Strumline can sit first in a chain");
-    synth_.setTooltip("Plays the notes with the built-in synth, to hear the conversion without another instrument");
-    wave_.setTooltip("The wave of the monitor synth");
-    panic_.setTooltip("All notes off, and the converters start again (for a note that hangs)");
-    preset_.setTooltip("Sets the mode and the detection knobs together");
+    // The language: Auto and the ten the interface has, each named in its own language. A change applies at once and is kept for the next time.
+    for (int l = 0; l <= int(i18n::Language::Korean); ++l) language_.addItem(i18n::languageName(i18n::Language(l)), l + 1);
+    language_.setSelectedId(int(i18n::preference()) + 1, juce::dontSendNotification);
+    language_.onChange = [this] {
+        i18n::setPreference(i18n::Language(language_.getSelectedId() - 1));
+        applyTexts();
+    };
+
     test_.setClickingTogglesState(true);
     test_.setToggleState(p_.testRunning(), juce::dontSendNotification);
     test_.onClick = [this] { p_.setTestRunning(test_.getToggleState()); };
-    test_.setTooltip("Plays a built-in arpeggio and chord, to try the MIDI output and the monitor synth without the converter");
 
+    applyTexts();
     startTimerHz(30);
+}
+
+// Every text that is set once (labels, tooltips, the presets) in the language in use. Called when the editor is built and when the language changes; the
+// texts that are drawn ask for their translation each time they are drawn, and the cached background is thrown away so that it is drawn again.
+void StrumlineEditor::applyTexts() {
+    mode_.setLabels(trAll({"Mono", "Poly", "Hybrid"}));
+    bend_.setLabels(trAll({"Off", "Channel", "MPE"}));
+    wave_.setLabels(trAll({"Sine", "Saw", "Square"}));
+    thru_.setLabels(trAll({"THRU"}));
+    synth_.setLabels(trAll({"SYNTH"}));
+    perf_.setLabels(trAll({"Fast", "Saver"}));
+    test_.setButtonText(tr("TEST"));
+    panic_.setButtonText(tr("PANIC"));
+
+    preset_.clear(juce::dontSendNotification);
+    preset_.addItem(tr("Solo lines (one note, fastest)"), 1);
+    preset_.addItem(tr("Fast hybrid (45 ms look-ahead)"), 2);
+    preset_.addItem(tr("Chords (Poly, 60 ms)"), 3);
+    preset_.addItem(tr("Low CPU (Hybrid, saver)"), 4);
+    preset_.setTextWhenNothingSelected(tr("Preset..."));
+
+    // What each control does, for the hover.
+    sens_.setTooltip(tr("How loud the guitar must be to count as playing. The white mark on the input level shows it: set it just above the noise"));
+    lookahead_.setTooltip(tr("How much of the future the chord converter may hear before it decides: less is faster but makes more mistakes (marks at 35, 45 and 60 ms)"));
+    velocity_.setTooltip(tr("The curve from how hard you pluck to the MIDI velocity: soft lifts quiet notes, hard asks for more"));
+    channel_.setTooltip(tr("The MIDI channel the notes go out on"));
+    transpose_.setTooltip(tr("Shifts every note, in semitones"));
+    level_.setTooltip(tr("The level of the monitor synth"));
+    mode_.setTooltip(tr("Mono: one note at a time, the fastest. Poly: chords (Basic Pitch), about 80 to 100 ms. Hybrid: the first note fast, the rest of the chord after it"));
+    bend_.setTooltip(tr("Off: no pitch wheel. Channel: one pitch wheel for the channel. MPE: not written yet (sends like Channel)"));
+    perf_.setTooltip(tr("Chord rate. Fast: the chord model runs every 35 ms. Saver: every 46 ms, a third less CPU and about 8 ms later"));
+    thru_.setTooltip(tr("The guitar goes on to the output, so Strumline can sit first in a chain"));
+    synth_.setTooltip(tr("Plays the notes with the built-in synth, to hear the conversion without another instrument"));
+    wave_.setTooltip(tr("The wave of the monitor synth"));
+    panic_.setTooltip(tr("All notes off, and the converters start again (for a note that hangs)"));
+    preset_.setTooltip(tr("Sets the mode and the detection knobs together"));
+    test_.setTooltip(tr("Plays a built-in arpeggio and chord, to try the MIDI output and the monitor synth without the converter"));
+    language_.setTooltip(tr("The language of the interface (Auto follows the language of the system)"));
+
+    for (auto* s : {&sens_, &lookahead_, &velocity_, &channel_, &transpose_, &level_}) s->updateText();
+    bg_ = juce::Image();  // the captions are in the cached background
+    repaint();
 }
 
 StrumlineEditor::~StrumlineEditor() {
@@ -251,6 +282,7 @@ void StrumlineEditor::resized() {
     perf_.setBounds(detection.getX() + 8, detection.getBottom() - 40, detection.getWidth() - 16, 26);
     preset_.setBounds(detection.getX() + 92, detection.getY() + 4, detection.getWidth() - 100, 20);
     panic_.setBounds(output.getRight() - 66, output.getY() + 5, 58, 20);
+    language_.setBounds(monitor.getRight() - 86, monitor.getY() + 4, 78, 20);
     level_.setBounds(monitor.getX() + 16, monitor.getY() + 46, 70, 86);
     synth_.setBounds(monitor.getX() + 104, monitor.getY() + 68, 86, 26);
     wave_.setBounds(monitor.getX() + 8, monitor.getBottom() - 40, monitor.getWidth() - 16, 26);
@@ -304,27 +336,27 @@ void StrumlineEditor::paintStatic(juce::Graphics& g) {
     g.setFont(font(10.5f, true));
     g.drawText("STRUMLINE", 48, 11, 70, 30, juce::Justification::centredLeft);
 
-    caption(g, "INPUT LEVEL", {14, 50, 90, 16});
+    caption(g, tr("INPUT LEVEL"), {14, 50, 90, 16});
     sunken(g, {102.0f, 49.0f, float(kWidth) - 102.0f - 88.0f, 18.0f}, 9.0f, kWellDeep);
 
     const auto roll = rollArea();
     sunken(g, roll.toFloat(), 10.0f, kWellDeep);
-    caption(g, "NOTES  (LAST 12 SECONDS)", {roll.getX() + 4, roll.getBottom() + 3, 240, 14});
-    caption(g, "PITCH BEND", {roll.getRight() - 124, roll.getBottom() + 3, 120, 14}, juce::Justification::centredRight);
+    caption(g, tr("NOTES  (LAST 12 SECONDS)"), {roll.getX() + 4, roll.getBottom() + 3, 240, 14});
+    caption(g, tr("PITCH BEND"), {roll.getRight() - 124, roll.getBottom() + 3, 120, 14}, juce::Justification::centredRight);
 
-    const char* titles[3] = {"DETECTION", "OUTPUT", "MONITOR SYNTH"};
+    const juce::String titles[3] = {tr("DETECTION"), tr("OUTPUT"), tr("MONITOR SYNTH")};
     for (int i = 0; i < 3; ++i) {
         const auto r = panelArea(i);
         sunken(g, r.toFloat(), 12.0f);
         caption(g, titles[i], {r.getX() + 14, r.getY() + 8, r.getWidth() - 28, 14});
     }
-    auto label = [&](juce::Component& c, const char* text) { caption(g, text, {c.getX(), c.getY() - 19, c.getWidth(), 14}, juce::Justification::centred); };
-    label(sens_, "SENS");
-    label(lookahead_, "LOOK-AHEAD");
-    label(velocity_, "VELOCITY");
-    label(channel_, "CHANNEL");
-    label(transpose_, "TRANSPOSE");
-    label(level_, "LEVEL");
+    auto label = [&](juce::Component& c, const juce::String& text) { caption(g, text, {c.getX(), c.getY() - 19, c.getWidth(), 14}, juce::Justification::centred); };
+    label(sens_, tr("SENS"));
+    label(lookahead_, tr("LOOK-AHEAD"));
+    label(velocity_, tr("VELOCITY"));
+    label(channel_, tr("CHANNEL"));
+    label(transpose_, tr("TRANSPOSE"));
+    label(level_, tr("LEVEL"));
 
     // Marks on the look-ahead knob at 35, 45 and 60 ms (the values that were measured; the tooltip says so).
     const auto kb = lookahead_.getBounds();
@@ -381,17 +413,17 @@ void StrumlineEditor::drawHeader(juce::Graphics& g) {
 
     // Four figures: the voices, the latency of the first note (one-note converter), the latency of the chord (chord converter: from where the note began to the
     // note-on, with the run of the model) and how much of the time the chord model is running.
-    auto stat = [&](int x, int w, const char* title, const juce::String& text, bool known) {
+    auto stat = [&](int x, int w, const juce::String& title, const juce::String& text, bool known) {
         caption(g, title, {x, 8, w, 14}, juce::Justification::centredRight);
         g.setColour(known ? kText : kLabel);
         g.setFont(font(15.0f, true));
         g.drawText(text, x, 22, w, 20, juce::Justification::centredRight);
     };
-    stat(444, 46, "VOICES", juce::String(p_.voices()) + " / 6", true);
+    stat(444, 46, tr("VOICES"), juce::String(p_.voices()) + " / 6", true);
     const float note = p_.latencyMs(), chord = p_.chordLatencyMs();
-    stat(494, 54, "NOTE", note > 0.0f ? juce::String(int(std::lround(note))) + " ms" : juce::String("-- ms"), note > 0.0f);
-    stat(552, 56, "CHORD", chord > 0.0f && p_.chordsAvailable() ? juce::String(int(std::lround(chord))) + " ms" : juce::String("-- ms"), chord > 0.0f && p_.chordsAvailable());
-    stat(612, 54, "MODEL", p_.chordsAvailable() ? juce::String(int(std::lround(std::max(0.0f, loadShown_)))) + " %" : juce::String("off"), p_.chordsAvailable());
+    stat(494, 54, tr("NOTE"), note > 0.0f ? juce::String(int(std::lround(note))) + " ms" : juce::String("-- ms"), note > 0.0f);
+    stat(552, 56, tr("CHORD"), chord > 0.0f && p_.chordsAvailable() ? juce::String(int(std::lround(chord))) + " ms" : juce::String("-- ms"), chord > 0.0f && p_.chordsAvailable());
+    stat(612, 54, tr("MODEL"), p_.chordsAvailable() ? juce::String(int(std::lround(std::max(0.0f, loadShown_)))) + " %" : tr("off"), p_.chordsAvailable());
 }
 
 void StrumlineEditor::drawLevel(juce::Graphics& g) {
@@ -423,7 +455,7 @@ void StrumlineEditor::drawLevel(juce::Graphics& g) {
     }
     g.setColour(juce::Colour(0xff34353a).interpolatedWith(kGreen, glow));
     g.fillEllipse(cx - 4.5f, cy - 4.5f, 9.0f, 9.0f);
-    caption(g, "MIDI OUT", {int(cx) + 12, 51, 62, 14});
+    caption(g, tr("MIDI OUT"), {int(cx) + 12, 51, 62, 14});
 }
 
 void StrumlineEditor::drawStrings(juce::Graphics& g) {
@@ -551,7 +583,7 @@ void StrumlineEditor::drawRoll(juce::Graphics& g) {
         g.setColour(kGold);
         g.drawRoundedRectangle(strip, 6.0f, 1.2f);
         g.setFont(font(11.5f, true));
-        g.drawText("CHORD MODEL NOT LOADED (onnxruntime.dll is missing): ONE NOTE AT A TIME", strip.toNearestInt(), juce::Justification::centred);
+        g.drawText(tr("CHORD MODEL NOT LOADED (ONNX Runtime is missing): ONE NOTE AT A TIME"), strip.toNearestInt(), juce::Justification::centred);
     }
 }
 

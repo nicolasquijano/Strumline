@@ -16,6 +16,7 @@ aparte de Schematic Amp Sim (`../SchematicAmpSim`, otro repositorio), con el que
   `%LOCALAPPDATA%\\Programs\\Common\\VST3\\Strumline.vst3` (con REAPER cerrado o sin el plugin cargado) y `%LOCALAPPDATA%\\Programs\\Strumline\\Strumline.exe`.
 
 ## Estado (2026-11-23, acordes hechos)
+- Idiomas: la interfaz está en 10 idiomas (`plugin/I18n*.cpp`, `tr("...")`, claves en inglés); traducciones sin revisión de nativos. Para agregar un texto: usarlo con `tr()` y sumarlo a las 9 tablas (el check avisa si las cantidades no coinciden).
 - Linux y macOS: el código quedó portable (dlopen, std::condition_variable, CMake por sistema, `build.sh`, `tools/fetch_onnxruntime.cmake`, workflow de GitHub Actions) pero SIN PROBAR fuera de Windows (no hay WSL ni compilador de Linux/Mac acá).
 - Interfaz ampliada (ver "Interfaz" al final del plan): latencia de nota y de acorde, carga del modelo, cents en las cuerdas, carril de bend, presets, PANIC, Fast/Saver.
 - Hecho: interfaz (como la maqueta), parámetros, salida MIDI, sinte de monitoreo, medidor, convertidor de UNA nota (`engine/mono_transcriber.h`, 28-40 ms de

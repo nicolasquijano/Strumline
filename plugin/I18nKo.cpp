@@ -1,0 +1,81 @@
+// Korean texts of the interface, keyed by the English text in the source (see I18n.h). Written as UTF-8 (this file is compiled with /utf-8 on MSVC).
+// Where an English text is missing from this table the interface shows it in English.
+
+#include <string>
+#include <unordered_map>
+
+namespace i18n {
+
+const std::unordered_map<std::string, std::string>& koreanTable() {
+    static const std::unordered_map<std::string, std::string> table{
+    {"Mono", "모노"},
+    {"Poly", "폴리"},
+    {"Hybrid", "하이브리드"},
+    {"Off", "끔"},
+    {"Channel", "채널"},
+    {"MPE", "MPE"},
+    {"Sine", "사인"},
+    {"Saw", "톱니"},
+    {"Square", "사각"},
+    {"THRU", "스루"},
+    {"SYNTH", "신스"},
+    {"Fast", "빠름"},
+    {"Saver", "절전"},
+    {"TEST", "테스트"},
+    {"PANIC", "패닉"},
+    {"Solo lines (one note, fastest)", "솔로 (한 음, 가장 빠름)"},
+    {"Fast hybrid (45 ms look-ahead)", "빠른 하이브리드 (45 ms)"},
+    {"Chords (Poly, 60 ms)", "코드 (폴리, 60 ms)"},
+    {"Low CPU (Hybrid, saver)", "낮은 CPU (하이브리드, 절전)"},
+    {"Preset...", "프리셋..."},
+    {"How loud the guitar must be to count as playing. The white mark on the input level shows it: set it just above the noise",
+     "기타 소리가 얼마나 커야 연주로 인정되는지 정합니다. 입력 레벨의 흰 표시가 그 값입니다. 잡음보다 조금 높게 설정하세요"},
+    {"How much of the future the chord converter may hear before it decides: less is faster but makes more mistakes (marks at 35, 45 and 60 ms)",
+     "코드 변환기가 판단하기 전에 얼마나 앞의 소리를 들을 수 있는지 정합니다. 짧을수록 빠르지만 오류가 늘어납니다 (35, 45, 60 ms에 표시)"},
+    {"The curve from how hard you pluck to the MIDI velocity: soft lifts quiet notes, hard asks for more",
+     "피킹 세기에서 MIDI 벨로시티로 가는 곡선입니다. 부드럽게는 약한 음을 끌어올리고, 강하게는 더 세게 쳐야 합니다"},
+    {"The MIDI channel the notes go out on", "음이 출력되는 MIDI 채널"},
+    {"Shifts every note, in semitones", "모든 음을 반음 단위로 옮깁니다"},
+    {"The level of the monitor synth", "모니터 신스의 음량"},
+    {"Mono: one note at a time, the fastest. Poly: chords (Basic Pitch), about 80 to 100 ms. Hybrid: the first note fast, the rest of the chord after it",
+     "모노: 한 번에 한 음, 가장 빠름. 폴리: 코드(Basic Pitch), 약 80~100 ms. 하이브리드: 첫 음은 빠르게, 나머지 코드 음은 뒤이어"},
+    {"Off: no pitch wheel. Channel: one pitch wheel for the channel. MPE: not written yet (sends like Channel)",
+     "끔: 피치 휠 없음. 채널: 채널 전체에 피치 휠 하나. MPE: 아직 미구현 (채널과 같게 전송)"},
+    {"Chord rate. Fast: the chord model runs every 35 ms. Saver: every 46 ms, a third less CPU and about 8 ms later",
+     "코드 처리 주기. 빠름: 모델을 35 ms마다 실행. 절전: 46 ms마다, CPU가 3분의 1 줄고 약 8 ms 늦어집니다"},
+    {"The guitar goes on to the output, so Strumline can sit first in a chain", "기타 신호를 출력으로 그대로 보내므로 Strumline을 체인 맨 앞에 둘 수 있습니다"},
+    {"Plays the notes with the built-in synth, to hear the conversion without another instrument",
+     "내장 신스로 음을 연주해 다른 악기 없이 변환 결과를 들을 수 있습니다"},
+    {"The wave of the monitor synth", "모니터 신스의 파형"},
+    {"All notes off, and the converters start again (for a note that hangs)", "모든 음을 끄고 변환기를 처음부터 다시 시작합니다 (멈추지 않는 음용)"},
+    {"Sets the mode and the detection knobs together", "모드와 감지 노브를 한 번에 설정합니다"},
+    {"Plays a built-in arpeggio and chord, to try the MIDI output and the monitor synth without the converter",
+     "내장 아르페지오와 코드를 연주해 변환기 없이 MIDI 출력과 신스를 시험합니다"},
+    {"The language of the interface (Auto follows the language of the system)", "인터페이스 언어 (자동은 시스템 언어를 따름)"},
+    {"INPUT LEVEL", "입력 레벨"},
+    {"NOTES  (LAST 12 SECONDS)", "음  (최근 12초)"},
+    {"PITCH BEND", "피치 벤드"},
+    {"DETECTION", "감지"},
+    {"OUTPUT", "출력"},
+    {"MONITOR SYNTH", "모니터 신스"},
+    {"SENS", "감도"},
+    {"LOOK-AHEAD", "선행"},
+    {"VELOCITY", "벨로시티"},
+    {"CHANNEL", "채널"},
+    {"TRANSPOSE", "트랜스포즈"},
+    {"LEVEL", "음량"},
+    {"VOICES", "음수"},
+    {"NOTE", "단음"},
+    {"CHORD", "코드"},
+    {"MODEL", "모델"},
+    {"off", "꺼짐"},
+    {"MIDI OUT", "MIDI 출력"},
+    {"soft", "약"},
+    {"normal", "보통"},
+    {"hard", "강"},
+    {"CHORD MODEL NOT LOADED (ONNX Runtime is missing): ONE NOTE AT A TIME", "코드 모델 미로드 (ONNX Runtime 없음): 한 번에 한 음만"},
+    };
+    return table;
+}
+
+}  // namespace i18n

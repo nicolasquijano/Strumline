@@ -15,6 +15,7 @@ public:
     void drawRotarySlider(juce::Graphics&, int x, int y, int width, int height, float pos, float startAngle, float endAngle, juce::Slider&) override;
     void drawButtonBackground(juce::Graphics&, juce::Button&, const juce::Colour&, bool highlighted, bool down) override;
     void drawComboBox(juce::Graphics&, int width, int height, bool isButtonDown, int bx, int by, int bw, int bh, juce::ComboBox&) override;
+    juce::Font getComboBoxFont(juce::ComboBox&) override { return juce::Font(juce::FontOptions(12.0f)); }
 };
 
 // A row of buttons bound to a choice parameter (one lit), or a single button bound to a bool parameter (a switch).
@@ -23,6 +24,10 @@ public:
     Segmented(juce::AudioProcessorValueTreeState&, const char* parameterId, juce::StringArray labels, bool toggle = false);
     void paint(juce::Graphics&) override;
     void mouseDown(const juce::MouseEvent&) override;
+    void setLabels(juce::StringArray labels) {
+        labels_ = std::move(labels);
+        repaint();
+    }
 
 private:
     std::unique_ptr<juce::ParameterAttachment> attachment_;
@@ -56,6 +61,7 @@ private:
     void drawStrings(juce::Graphics&);
     void drawRoll(juce::Graphics&);
     void paintStatic(juce::Graphics&);
+    void applyTexts();
     void applyPreset(int index);
 
     juce::Rectangle<int> rollArea() const { return {14, 146, kWidth - 28, 190}; }
@@ -68,7 +74,7 @@ private:
     juce::Slider sens_, lookahead_, velocity_, channel_, transpose_, level_;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> sensAtt_, lookAtt_, velAtt_, chanAtt_, transAtt_, levelAtt_;
     Segmented mode_, bend_, wave_, thru_, synth_, perf_;
-    juce::ComboBox preset_;
+    juce::ComboBox preset_, language_;
     juce::TextButton panic_{"PANIC"};
     juce::TooltipWindow tooltips_{this, 500};
     juce::TextButton test_{"TEST"};

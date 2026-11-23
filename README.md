@@ -7,6 +7,8 @@ Born as an idea for [Schematic Amp Sim](../SchematicAmpSim) (the plug-in is a se
 
 Logo: `docs/logo/strumline-icon.svg` (ícono con fondo) y `strumline-mark.svg` (solo la marca), prompts en `docs/LOGO_PROMPT.md`.
 
+Languages: English, Spanish, Portuguese, Italian, Chinese, French, German, Japanese, Russian and Korean (chosen in the corner of the MONITOR panel, or Auto = the system language). The translations are not reviewed by native speakers.
+
 Status: the plug-in plays **single notes** (about 30-40 ms after the pluck, with pitch bend) and **chords** (Basic Pitch through ONNX Runtime, on its own thread: about 80-100 ms, see the plan for the numbers and the CPU cost). Modes: Mono, Poly (chords only) and Hybrid (the first note fast, the rest of the chord later). It needs `onnxruntime.dll` next to the plug-in (not in the repository, see the plan); without it Poly and Hybrid play as Mono. The TEST button plays a built-in arpeggio and chord to try the MIDI output without a guitar.
 
 ## What is here

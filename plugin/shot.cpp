@@ -1,8 +1,9 @@
-// strumline_shot <file.png>: draws the editor after six seconds of the built-in test script, to see the interface without opening a host.
+// strumline_shot <file.png> [language code, e.g. es]: draws the editor after six seconds of the built-in test script, to see the interface without opening a host.
 #include <cmath>
 
 #include <juce_audio_utils/juce_audio_utils.h>
 
+#include "I18n.h"
 #include "StrumlineEditor.h"
 #include "StrumlineProcessor.h"
 
@@ -10,6 +11,7 @@ int main(int argc, char** argv) {
     juce::ScopedJuceInitialiser_GUI gui;
     const juce::File out = juce::File::getCurrentWorkingDirectory().getChildFile(argc > 1 ? argv[1] : "interface.png");
 
+    if (argc > 2) i18n::useForSession(i18n::fromSystemCode(argv[2]));  // this run only: the saved preference is not touched
     StrumlineProcessor p;
     p.setPlayConfigDetails(2, 2, 48000.0, 512);
     p.prepareToPlay(48000.0, 512);

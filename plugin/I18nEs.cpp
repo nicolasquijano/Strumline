@@ -1,0 +1,81 @@
+// Spanish texts of the interface, keyed by the English text in the source (see I18n.h). Written as UTF-8 (this file is compiled with /utf-8 on MSVC).
+// Where an English text is missing from this table the interface shows it in English.
+
+#include <string>
+#include <unordered_map>
+
+namespace i18n {
+
+const std::unordered_map<std::string, std::string>& spanishTable() {
+    static const std::unordered_map<std::string, std::string> table{
+    {"Mono", "Mono"},
+    {"Poly", "Poly"},
+    {"Hybrid", "Híbrido"},
+    {"Off", "Apagado"},
+    {"Channel", "Canal"},
+    {"MPE", "MPE"},
+    {"Sine", "Seno"},
+    {"Saw", "Sierra"},
+    {"Square", "Cuadrada"},
+    {"THRU", "PASO"},
+    {"SYNTH", "SINTE"},
+    {"Fast", "Rápido"},
+    {"Saver", "Ahorro"},
+    {"TEST", "TEST"},
+    {"PANIC", "PÁNICO"},
+    {"Solo lines (one note, fastest)", "Solos (una nota, lo más rápido)"},
+    {"Fast hybrid (45 ms look-ahead)", "Híbrido rápido (45 ms)"},
+    {"Chords (Poly, 60 ms)", "Acordes (Poly, 60 ms)"},
+    {"Low CPU (Hybrid, saver)", "Poco CPU (Híbrido, ahorro)"},
+    {"Preset...", "Preset..."},
+    {"How loud the guitar must be to count as playing. The white mark on the input level shows it: set it just above the noise",
+     "Qué tan fuerte debe sonar la guitarra para contar como tocada. La marca blanca del nivel de entrada lo muestra: ponelo apenas por encima del ruido"},
+    {"How much of the future the chord converter may hear before it decides: less is faster but makes more mistakes (marks at 35, 45 and 60 ms)",
+     "Cuánto del futuro puede escuchar el convertidor de acordes antes de decidir: menos es más rápido pero se equivoca más (marcas en 35, 45 y 60 ms)"},
+    {"The curve from how hard you pluck to the MIDI velocity: soft lifts quiet notes, hard asks for more",
+     "La curva entre qué tan fuerte pulsás y la velocity MIDI: suave sube las notas flojas, fuerte pide más"},
+    {"The MIDI channel the notes go out on", "El canal MIDI por el que salen las notas"},
+    {"Shifts every note, in semitones", "Desplaza todas las notas, en semitonos"},
+    {"The level of the monitor synth", "El nivel del sinte de monitoreo"},
+    {"Mono: one note at a time, the fastest. Poly: chords (Basic Pitch), about 80 to 100 ms. Hybrid: the first note fast, the rest of the chord after it",
+     "Mono: una nota a la vez, lo más rápido. Poly: acordes (Basic Pitch), unos 80 a 100 ms. Híbrido: la primera nota rápido y el resto del acorde después"},
+    {"Off: no pitch wheel. Channel: one pitch wheel for the channel. MPE: not written yet (sends like Channel)",
+     "Apagado: sin pitch wheel. Canal: una rueda de pitch para todo el canal. MPE: todavía no está hecho (envía como Canal)"},
+    {"Chord rate. Fast: the chord model runs every 35 ms. Saver: every 46 ms, a third less CPU and about 8 ms later",
+     "Ritmo de acordes. Rápido: el modelo corre cada 35 ms. Ahorro: cada 46 ms, un tercio menos de CPU y unos 8 ms más tarde"},
+    {"The guitar goes on to the output, so Strumline can sit first in a chain", "La guitarra sigue hacia la salida, así Strumline puede ir primero en una cadena"},
+    {"Plays the notes with the built-in synth, to hear the conversion without another instrument",
+     "Toca las notas con el sinte incorporado, para oír la conversión sin otro instrumento"},
+    {"The wave of the monitor synth", "La onda del sinte de monitoreo"},
+    {"All notes off, and the converters start again (for a note that hangs)", "Apaga todas las notas y los convertidores empiezan de cero (para una nota colgada)"},
+    {"Sets the mode and the detection knobs together", "Ajusta juntos el modo y los controles de detección"},
+    {"Plays a built-in arpeggio and chord, to try the MIDI output and the monitor synth without the converter",
+     "Toca un arpegio y un acorde incorporados, para probar la salida MIDI y el sinte sin el convertidor"},
+    {"The language of the interface (Auto follows the language of the system)", "El idioma de la interfaz (Auto sigue el idioma del sistema)"},
+    {"INPUT LEVEL", "ENTRADA"},
+    {"NOTES  (LAST 12 SECONDS)", "NOTAS  (ÚLTIMOS 12 SEGUNDOS)"},
+    {"PITCH BEND", "PITCH BEND"},
+    {"DETECTION", "DETECCIÓN"},
+    {"OUTPUT", "SALIDA"},
+    {"MONITOR SYNTH", "SINTE MONITOR"},
+    {"SENS", "SENS"},
+    {"LOOK-AHEAD", "ANTICIPO"},
+    {"VELOCITY", "VELOCITY"},
+    {"CHANNEL", "CANAL"},
+    {"TRANSPOSE", "TRANSPONER"},
+    {"LEVEL", "NIVEL"},
+    {"VOICES", "VOCES"},
+    {"NOTE", "NOTA"},
+    {"CHORD", "ACORDE"},
+    {"MODEL", "MODELO"},
+    {"off", "no"},
+    {"MIDI OUT", "MIDI OUT"},
+    {"soft", "suave"},
+    {"normal", "normal"},
+    {"hard", "fuerte"},
+    {"CHORD MODEL NOT LOADED (ONNX Runtime is missing): ONE NOTE AT A TIME", "MODELO DE ACORDES NO CARGADO (falta ONNX Runtime): UNA NOTA A LA VEZ"},
+    };
+    return table;
+}
+
+}  // namespace i18n

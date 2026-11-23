@@ -1,0 +1,81 @@
+// Japanese texts of the interface, keyed by the English text in the source (see I18n.h). Written as UTF-8 (this file is compiled with /utf-8 on MSVC).
+// Where an English text is missing from this table the interface shows it in English.
+
+#include <string>
+#include <unordered_map>
+
+namespace i18n {
+
+const std::unordered_map<std::string, std::string>& japaneseTable() {
+    static const std::unordered_map<std::string, std::string> table{
+    {"Mono", "モノ"},
+    {"Poly", "ポリ"},
+    {"Hybrid", "ハイブリッド"},
+    {"Off", "オフ"},
+    {"Channel", "チャンネル"},
+    {"MPE", "MPE"},
+    {"Sine", "サイン"},
+    {"Saw", "ノコギリ"},
+    {"Square", "矩形"},
+    {"THRU", "スルー"},
+    {"SYNTH", "シンセ"},
+    {"Fast", "高速"},
+    {"Saver", "省電力"},
+    {"TEST", "テスト"},
+    {"PANIC", "パニック"},
+    {"Solo lines (one note, fastest)", "ソロ（単音・最速）"},
+    {"Fast hybrid (45 ms look-ahead)", "高速ハイブリッド（45 ms）"},
+    {"Chords (Poly, 60 ms)", "コード（ポリ・60 ms）"},
+    {"Low CPU (Hybrid, saver)", "低CPU（ハイブリッド・省電力）"},
+    {"Preset...", "プリセット..."},
+    {"How loud the guitar must be to count as playing. The white mark on the input level shows it: set it just above the noise",
+     "ギターがどれくらいの音量で「演奏中」とみなされるか。入力レベルの白いマークが目安です。ノイズのすぐ上に設定してください"},
+    {"How much of the future the chord converter may hear before it decides: less is faster but makes more mistakes (marks at 35, 45 and 60 ms)",
+     "コード変換が判断する前にどれだけ先の音を聞くか。短いほど速いですが誤認識が増えます（35・45・60 ms に目印）"},
+    {"The curve from how hard you pluck to the MIDI velocity: soft lifts quiet notes, hard asks for more",
+     "ピッキングの強さからMIDIベロシティへのカーブ。ソフトは弱い音を持ち上げ、ハードはより強く弾く必要があります"},
+    {"The MIDI channel the notes go out on", "ノートを出力するMIDIチャンネル"},
+    {"Shifts every note, in semitones", "すべてのノートを半音単位でずらします"},
+    {"The level of the monitor synth", "モニター用シンセの音量"},
+    {"Mono: one note at a time, the fastest. Poly: chords (Basic Pitch), about 80 to 100 ms. Hybrid: the first note fast, the rest of the chord after it",
+     "モノ：一度に一音、最速。ポリ：コード（Basic Pitch）、約80〜100 ms。ハイブリッド：最初の音は速く、残りのコードは後から"},
+    {"Off: no pitch wheel. Channel: one pitch wheel for the channel. MPE: not written yet (sends like Channel)",
+     "オフ：ピッチホイールなし。チャンネル：チャンネル全体で1つのピッチホイール。MPE：未実装（チャンネルと同じ送信）"},
+    {"Chord rate. Fast: the chord model runs every 35 ms. Saver: every 46 ms, a third less CPU and about 8 ms later",
+     "コード処理の間隔。高速：モデルを35 msごとに実行。省電力：46 msごと、CPUが3分の1減り、約8 ms遅くなります"},
+    {"The guitar goes on to the output, so Strumline can sit first in a chain", "ギターの音を出力へそのまま通すので、Strumlineをチェーンの先頭に置けます"},
+    {"Plays the notes with the built-in synth, to hear the conversion without another instrument",
+     "内蔵シンセでノートを鳴らし、他の楽器なしで変換を確認できます"},
+    {"The wave of the monitor synth", "モニター用シンセの波形"},
+    {"All notes off, and the converters start again (for a note that hangs)", "すべてのノートをオフにして変換をやり直します（鳴りっぱなしの音用）"},
+    {"Sets the mode and the detection knobs together", "モードと検出ノブをまとめて設定します"},
+    {"Plays a built-in arpeggio and chord, to try the MIDI output and the monitor synth without the converter",
+     "内蔵のアルペジオとコードを鳴らし、変換なしでMIDI出力とシンセを試せます"},
+    {"The language of the interface (Auto follows the language of the system)", "画面の言語（自動はシステムの言語に従います）"},
+    {"INPUT LEVEL", "入力レベル"},
+    {"NOTES  (LAST 12 SECONDS)", "ノート  （直近12秒）"},
+    {"PITCH BEND", "ピッチベンド"},
+    {"DETECTION", "検出"},
+    {"OUTPUT", "出力"},
+    {"MONITOR SYNTH", "モニターシンセ"},
+    {"SENS", "感度"},
+    {"LOOK-AHEAD", "先読み"},
+    {"VELOCITY", "ベロシティ"},
+    {"CHANNEL", "チャンネル"},
+    {"TRANSPOSE", "トランスポーズ"},
+    {"LEVEL", "音量"},
+    {"VOICES", "発音数"},
+    {"NOTE", "単音"},
+    {"CHORD", "コード"},
+    {"MODEL", "モデル"},
+    {"off", "オフ"},
+    {"MIDI OUT", "MIDI出力"},
+    {"soft", "弱"},
+    {"normal", "標準"},
+    {"hard", "強"},
+    {"CHORD MODEL NOT LOADED (ONNX Runtime is missing): ONE NOTE AT A TIME", "コードモデル未読込（ONNX Runtimeが見つかりません）：単音のみ"},
+    };
+    return table;
+}
+
+}  // namespace i18n

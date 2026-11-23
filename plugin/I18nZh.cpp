@@ -1,0 +1,81 @@
+// Simplified Chinese texts of the interface, keyed by the English text in the source (see I18n.h). Written as UTF-8 (this file is compiled with /utf-8 on MSVC).
+// Where an English text is missing from this table the interface shows it in English.
+
+#include <string>
+#include <unordered_map>
+
+namespace i18n {
+
+const std::unordered_map<std::string, std::string>& chineseTable() {
+    static const std::unordered_map<std::string, std::string> table{
+    {"Mono", "单音"},
+    {"Poly", "复音"},
+    {"Hybrid", "混合"},
+    {"Off", "关闭"},
+    {"Channel", "通道"},
+    {"MPE", "MPE"},
+    {"Sine", "正弦"},
+    {"Saw", "锯齿"},
+    {"Square", "方波"},
+    {"THRU", "直通"},
+    {"SYNTH", "合成器"},
+    {"Fast", "快速"},
+    {"Saver", "省电"},
+    {"TEST", "测试"},
+    {"PANIC", "急停"},
+    {"Solo lines (one note, fastest)", "独奏（单音，最快）"},
+    {"Fast hybrid (45 ms look-ahead)", "快速混合（45 毫秒）"},
+    {"Chords (Poly, 60 ms)", "和弦（复音，60 毫秒）"},
+    {"Low CPU (Hybrid, saver)", "低 CPU（混合，省电）"},
+    {"Preset...", "预设..."},
+    {"How loud the guitar must be to count as playing. The white mark on the input level shows it: set it just above the noise",
+     "吉他要多大声才算在演奏。输入电平上的白色标记显示了这个值：设置在刚好高于噪声的位置"},
+    {"How much of the future the chord converter may hear before it decides: less is faster but makes more mistakes (marks at 35, 45 and 60 ms)",
+     "和弦转换器在做出判断前可以听到多少“未来”的声音：越少越快，但错误更多（标记位于 35、45 和 60 毫秒）"},
+    {"The curve from how hard you pluck to the MIDI velocity: soft lifts quiet notes, hard asks for more",
+     "拨弦力度到 MIDI 力度值的曲线：“软”会提升轻音，“硬”则要求更用力"},
+    {"The MIDI channel the notes go out on", "音符输出所用的 MIDI 通道"},
+    {"Shifts every note, in semitones", "将所有音符移调，单位为半音"},
+    {"The level of the monitor synth", "监听合成器的音量"},
+    {"Mono: one note at a time, the fastest. Poly: chords (Basic Pitch), about 80 to 100 ms. Hybrid: the first note fast, the rest of the chord after it",
+     "单音：一次一个音，最快。复音：和弦（Basic Pitch），约 80 到 100 毫秒。混合：第一个音很快，和弦的其余音随后跟上"},
+    {"Off: no pitch wheel. Channel: one pitch wheel for the channel. MPE: not written yet (sends like Channel)",
+     "关闭：无弯音轮。通道：整个通道共用一个弯音轮。MPE：尚未实现（按“通道”发送）"},
+    {"Chord rate. Fast: the chord model runs every 35 ms. Saver: every 46 ms, a third less CPU and about 8 ms later",
+     "和弦速率。快速：模型每 35 毫秒运行一次。省电：每 46 毫秒一次，CPU 少三分之一，延迟多约 8 毫秒"},
+    {"The guitar goes on to the output, so Strumline can sit first in a chain", "吉他信号继续送到输出端，这样 Strumline 可以放在效果链的最前面"},
+    {"Plays the notes with the built-in synth, to hear the conversion without another instrument",
+     "用内置合成器播放音符，无需其他乐器即可听到转换结果"},
+    {"The wave of the monitor synth", "监听合成器的波形"},
+    {"All notes off, and the converters start again (for a note that hangs)", "关闭所有音符，转换器重新开始（用于卡住的音符）"},
+    {"Sets the mode and the detection knobs together", "同时设置模式和检测旋钮"},
+    {"Plays a built-in arpeggio and chord, to try the MIDI output and the monitor synth without the converter",
+     "播放内置的琶音和和弦，无需转换器即可测试 MIDI 输出和监听合成器"},
+    {"The language of the interface (Auto follows the language of the system)", "界面语言（“自动”跟随系统语言）"},
+    {"INPUT LEVEL", "输入电平"},
+    {"NOTES  (LAST 12 SECONDS)", "音符  （最近 12 秒）"},
+    {"PITCH BEND", "弯音"},
+    {"DETECTION", "检测"},
+    {"OUTPUT", "输出"},
+    {"MONITOR SYNTH", "监听合成器"},
+    {"SENS", "灵敏度"},
+    {"LOOK-AHEAD", "前瞻"},
+    {"VELOCITY", "力度"},
+    {"CHANNEL", "通道"},
+    {"TRANSPOSE", "移调"},
+    {"LEVEL", "音量"},
+    {"VOICES", "复音数"},
+    {"NOTE", "单音"},
+    {"CHORD", "和弦"},
+    {"MODEL", "模型"},
+    {"off", "关"},
+    {"MIDI OUT", "MIDI 输出"},
+    {"soft", "软"},
+    {"normal", "正常"},
+    {"hard", "硬"},
+    {"CHORD MODEL NOT LOADED (ONNX Runtime is missing): ONE NOTE AT A TIME", "和弦模型未加载（缺少 ONNX Runtime）：一次只能一个音"},
+    };
+    return table;
+}
+
+}  // namespace i18n

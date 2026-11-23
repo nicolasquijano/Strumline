@@ -1,0 +1,81 @@
+// Russian texts of the interface, keyed by the English text in the source (see I18n.h). Written as UTF-8 (this file is compiled with /utf-8 on MSVC).
+// Where an English text is missing from this table the interface shows it in English.
+
+#include <string>
+#include <unordered_map>
+
+namespace i18n {
+
+const std::unordered_map<std::string, std::string>& russianTable() {
+    static const std::unordered_map<std::string, std::string> table{
+    {"Mono", "Моно"},
+    {"Poly", "Поли"},
+    {"Hybrid", "Гибрид"},
+    {"Off", "Выкл"},
+    {"Channel", "Канал"},
+    {"MPE", "MPE"},
+    {"Sine", "Синус"},
+    {"Saw", "Пила"},
+    {"Square", "Меандр"},
+    {"THRU", "THRU"},
+    {"SYNTH", "СИНТ"},
+    {"Fast", "Быстро"},
+    {"Saver", "Эконом"},
+    {"TEST", "ТЕСТ"},
+    {"PANIC", "СТОП"},
+    {"Solo lines (one note, fastest)", "Соло (одна нота, быстрее всего)"},
+    {"Fast hybrid (45 ms look-ahead)", "Быстрый гибрид (45 мс)"},
+    {"Chords (Poly, 60 ms)", "Аккорды (Поли, 60 мс)"},
+    {"Low CPU (Hybrid, saver)", "Мало CPU (Гибрид, эконом)"},
+    {"Preset...", "Пресет..."},
+    {"How loud the guitar must be to count as playing. The white mark on the input level shows it: set it just above the noise",
+     "Насколько громко должна звучать гитара, чтобы считаться игрой. Белая метка на входном уровне показывает порог: поставьте её чуть выше шума"},
+    {"How much of the future the chord converter may hear before it decides: less is faster but makes more mistakes (marks at 35, 45 and 60 ms)",
+     "Сколько «будущего» преобразователь аккордов может услышать, прежде чем решить: меньше — быстрее, но больше ошибок (метки на 35, 45 и 60 мс)"},
+    {"The curve from how hard you pluck to the MIDI velocity: soft lifts quiet notes, hard asks for more",
+     "Кривая от силы щипка к MIDI-velocity: мягкая поднимает тихие ноты, жёсткая требует больше"},
+    {"The MIDI channel the notes go out on", "MIDI-канал, на который идут ноты"},
+    {"Shifts every note, in semitones", "Сдвигает все ноты, в полутонах"},
+    {"The level of the monitor synth", "Уровень мониторного синтезатора"},
+    {"Mono: one note at a time, the fastest. Poly: chords (Basic Pitch), about 80 to 100 ms. Hybrid: the first note fast, the rest of the chord after it",
+     "Моно: по одной ноте, быстрее всего. Поли: аккорды (Basic Pitch), около 80–100 мс. Гибрид: первая нота сразу, остальные ноты аккорда позже"},
+    {"Off: no pitch wheel. Channel: one pitch wheel for the channel. MPE: not written yet (sends like Channel)",
+     "Выкл: без питч-бенда. Канал: одно колесо на весь канал. MPE: пока не реализовано (отправляет как Канал)"},
+    {"Chord rate. Fast: the chord model runs every 35 ms. Saver: every 46 ms, a third less CPU and about 8 ms later",
+     "Частота аккордов. Быстро: модель работает каждые 35 мс. Эконом: каждые 46 мс, на треть меньше CPU и примерно на 8 мс позже"},
+    {"The guitar goes on to the output, so Strumline can sit first in a chain", "Гитара проходит дальше на выход, поэтому Strumline можно ставить первым в цепочке"},
+    {"Plays the notes with the built-in synth, to hear the conversion without another instrument",
+     "Играет ноты встроенным синтезатором, чтобы слышать преобразование без другого инструмента"},
+    {"The wave of the monitor synth", "Форма волны мониторного синтезатора"},
+    {"All notes off, and the converters start again (for a note that hangs)", "Выключает все ноты, преобразователи начинают заново (для зависшей ноты)"},
+    {"Sets the mode and the detection knobs together", "Задаёт вместе режим и регуляторы обнаружения"},
+    {"Plays a built-in arpeggio and chord, to try the MIDI output and the monitor synth without the converter",
+     "Играет встроенное арпеджио и аккорд, чтобы проверить MIDI-выход и синтезатор без преобразователя"},
+    {"The language of the interface (Auto follows the language of the system)", "Язык интерфейса (Авто следует языку системы)"},
+    {"INPUT LEVEL", "ВХОД"},
+    {"NOTES  (LAST 12 SECONDS)", "НОТЫ  (ПОСЛЕДНИЕ 12 СЕКУНД)"},
+    {"PITCH BEND", "ПИТЧ-БЕНД"},
+    {"DETECTION", "ОБНАРУЖ."},
+    {"OUTPUT", "ВЫХОД"},
+    {"MONITOR SYNTH", "МОНИТОР"},
+    {"SENS", "ЧУВСТВ."},
+    {"LOOK-AHEAD", "УПРЕЖД."},
+    {"VELOCITY", "VELOCITY"},
+    {"CHANNEL", "КАНАЛ"},
+    {"TRANSPOSE", "ТРАНСП."},
+    {"LEVEL", "УРОВЕНЬ"},
+    {"VOICES", "ГОЛОСА"},
+    {"NOTE", "НОТА"},
+    {"CHORD", "АККОРД"},
+    {"MODEL", "МОДЕЛЬ"},
+    {"off", "выкл"},
+    {"MIDI OUT", "MIDI OUT"},
+    {"soft", "мягко"},
+    {"normal", "норма"},
+    {"hard", "жёстко"},
+    {"CHORD MODEL NOT LOADED (ONNX Runtime is missing): ONE NOTE AT A TIME", "МОДЕЛЬ АККОРДОВ НЕ ЗАГРУЖЕНА (нет ONNX Runtime): ПО ОДНОЙ НОТЕ"},
+    };
+    return table;
+}
+
+}  // namespace i18n

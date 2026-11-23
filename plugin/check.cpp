@@ -17,6 +17,7 @@
 
 #include <juce_audio_utils/juce_audio_utils.h>
 
+#include "I18n.h"
 #include "StrumlineProcessor.h"
 
 namespace {
@@ -87,6 +88,25 @@ std::vector<float> pluck(int midi, double seconds, unsigned seed) {
 
 int main() {
     juce::ScopedJuceInitialiser_GUI gui;
+    {
+        // The languages: every table translates the same texts, a missing text falls back to English, and the system language is mapped.
+        using i18n::Language;
+        const auto spanish = i18n::translationCount(Language::Spanish);
+        bool same = spanish > 40;
+        for (auto l : {Language::Portuguese, Language::Italian, Language::Chinese, Language::French, Language::German, Language::Japanese, Language::Russian, Language::Korean})
+            same = same && i18n::translationCount(l) == spanish;
+        check(same, "the nine languages translate the same number of texts");
+        i18n::useForSession(Language::Spanish);
+        check(tr("PANIC") == juce::String::fromUTF8("P\xc3\x81NICO"), "Spanish: PANIC is PÁNICO");
+        check(tr("a text that is not in any table") == "a text that is not in any table", "a text without a translation stays in English");
+        i18n::useForSession(Language::Japanese);
+        check(tr("PANIC") != "PANIC" && tr("PANIC").isNotEmpty(), "Japanese: PANIC is translated");
+        i18n::useForSession(Language::English);
+        check(tr("PANIC") == "PANIC", "English: the text is the one in the source");
+        check(i18n::fromSystemCode("es_AR") == Language::Spanish && i18n::fromSystemCode("pt-BR") == Language::Portuguese && i18n::fromSystemCode("zh_CN") == Language::Chinese &&
+                  i18n::fromSystemCode("ko") == Language::Korean && i18n::fromSystemCode("sv_SE") == Language::English,
+              "system language codes map to the interface languages (English for the rest)");
+    }
     {
         StrumlineProcessor p;
         p.setPlayConfigDetails(2, 2, 48000.0, 512);
