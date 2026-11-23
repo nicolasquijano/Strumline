@@ -7,6 +7,8 @@ juce_add_plugin(Strumline
   FORMATS VST3 Standalone
   PRODUCT_NAME "Strumline"
   PLUGIN_NAME "Strumline"
+  ICON_BIG "${CMAKE_CURRENT_SOURCE_DIR}/icon/icon-256.png"
+  ICON_SMALL "${CMAKE_CURRENT_SOURCE_DIR}/icon/icon-64.png"
   IS_SYNTH FALSE
   NEEDS_MIDI_INPUT FALSE
   NEEDS_MIDI_OUTPUT TRUE
