@@ -63,6 +63,7 @@ Source: "..\build\plugin\Strumline_artefacts\Release\Standalone\onnxruntime_prov
 Source: "..\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\THIRD_PARTY_NOTICES.md"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\README.md"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\README.es.md"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{autoprograms}\Strumline"; Filename: "{app}\Strumline.exe"; Components: standalone

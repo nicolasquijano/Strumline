@@ -29,7 +29,7 @@ name="Strumline $full"
 stage="$(mktemp -d)/$name"
 mkdir -p "$stage"
 cp -R "$vst3" "$app" "$stage/"
-cp LICENSE THIRD_PARTY_NOTICES.md README.md CHANGELOG.md "$stage/"
+cp LICENSE THIRD_PARTY_NOTICES.md README.md README.es.md CHANGELOG.md "$stage/"
 cat > "$stage/INSTALL.txt" <<EOF
 Strumline $full for macOS ($arch, macOS 11 or later)
 

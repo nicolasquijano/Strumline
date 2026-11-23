@@ -1,5 +1,7 @@
 # Strumline
 
+**English** · [Español](README.es.md)
+
 Guitar to MIDI: a plug-in that listens to an ordinary electric guitar and plays the notes it hears (polyphonic, in real time) as MIDI.
 Born as an idea for [Schematic Amp Sim](../SchematicAmpSim) (the plug-in is a separate one, see the plan) and kept in its own folder.
 
@@ -46,12 +48,12 @@ build.cmd target strumline_eval          :: build\plugin\strumline_eval.exe <fol
 ```
 
 The TEST button plays an A minor arpeggio and a chord of five notes in a loop, so the MIDI output can be tried in a host (REAPER: put a synth after Strumline on
-the same track, or send the MIDI to another track) before the converter exists. THRU lets the guitar go on to the output so Strumline can sit first in a chain.
+the same track, or send the MIDI to another track). THRU lets the guitar go on to the output so Strumline can sit first in a chain.
 
 ## Linux and macOS
 
 The code is written for Windows, macOS and Linux (JUCE, plus the engine in `engine/`, which uses only standard C++). **Windows is the one tried by hand**; the other two
-are checked by the GitHub Actions workflow `.github/workflows/build.yml` (it builds all three and runs `strumline_check`), which runs once the project is pushed to GitHub.
+are checked by the GitHub Actions workflow `.github/workflows/ci.yml` (it builds all three and runs `strumline_check` on every push) and packaged by `release.yml` when a tag is pushed.
 
 ```sh
 cmake -P tools/fetch_onnxruntime.cmake third_party/onnxruntime     # ONNX Runtime for the chord converter (about 184 MB download; keeps the part for each system)

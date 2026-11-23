@@ -26,7 +26,7 @@ cp "$exe" "$stage/Standalone/"
 # The standalone opens libonnxruntime.so from its own folder.
 cp "$artefacts"/Standalone/libonnxruntime*.so "$stage/Standalone/" 2>/dev/null || echo "  (no libonnxruntime next to the standalone: it will play one note at a time)"
 chmod +x "$stage/Standalone/Strumline"
-cp LICENSE THIRD_PARTY_NOTICES.md README.md CHANGELOG.md "$stage/"
+cp LICENSE THIRD_PARTY_NOTICES.md README.md README.es.md CHANGELOG.md "$stage/"
 cat > "$stage/INSTALL.txt" <<EOF
 Strumline $full for Linux ($arch)
 

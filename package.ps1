@@ -36,7 +36,7 @@ $stage = "dist\_stage\Strumline-$full"
 New-Item -ItemType Directory "$stage\VST3", "$stage\Standalone" | Out-Null
 Copy-Item "$art\VST3\Strumline.vst3" "$stage\VST3\Strumline.vst3" -Recurse
 Copy-Item "$art\Standalone\*" "$stage\Standalone" -Recurse
-Copy-Item LICENSE, THIRD_PARTY_NOTICES.md, README.md, CHANGELOG.md $stage
+Copy-Item LICENSE, THIRD_PARTY_NOTICES.md, README.md, README.es.md, CHANGELOG.md $stage
 Set-Content "$stage\INSTALL.txt" @"
 Strumline $full (Windows, 64 bit)
 
