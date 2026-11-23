@@ -15,8 +15,8 @@ First release, for Windows (VST3 and standalone, tried by hand), Linux (x86_64) 
   - a chord converter (Spotify's Basic Pitch model through ONNX Runtime, on its own thread: about 80 to 100 ms), with a look-ahead control;
   - three modes: **Mono**, **Poly** and **Hybrid** (the first note fast, the rest of the chord after it).
 - Output: MIDI channel, transpose, velocity curve, pitch bend off / channel; a built-in monitor synth (sine, saw, square); THRU for the guitar; a TEST script; PANIC.
-- Interface: relief style with the logo, input level with the sensitivity mark, the six strings, a piano roll of the last 12 seconds with the pitch bend lane, latency of the note and of the chord,
-  load of the chord model, presets, tooltips, and **ten languages** (English, Spanish, Portuguese, Italian, Chinese, French, German, Japanese, Russian, Korean; Auto follows the system).
+- Interface: a flat dark design with one gold accent and a resizable window (700 to 2000 px wide, same proportions): the notes that sound now with a tuner, the input level with the sensitivity mark, a piano roll of the last 12 seconds with the pitch bend lane,
+  latency of the note and of the chord, load of the chord model, presets, tooltips, and **ten languages** (English, Spanish, Portuguese, Italian, Chinese, French, German, Japanese, Russian, Korean; Auto follows the system).
 - Packages for the three systems: a Windows installer (VST3 for all users or only the current user, standalone, Start menu entry) and zip; a Linux tar.gz; a macOS zip (ad-hoc signed, not notarized: see INSTALL.txt).
 
 ### Known limitations
