@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="213 213 597 597" width="1024" height="1024">
+  <title>Strumline</title>
+  <g fill="none" stroke="#e0b24a" stroke-width="8">
+    <path d="M213 379 H245 C280 379 300 427 355 427 C405 427 420 379 465 379 H466"/>
+    <path d="M540 379 H810"/>
+    <path d="M213 430 H245 C280 430 300 478 355 478 C405 478 420 430 465 430 H515"/>
+    <path d="M589 430 H810"/>
+    <path d="M213 481 H245 C280 481 300 529 355 529 C405 529 420 481 465 481 H564"/>
+    <path d="M638 481 H810"/>
+    <path d="M213 532 H245 C280 532 300 580 355 580 C405 580 420 532 465 532 H613"/>
+    <path d="M687 532 H810"/>
+    <path d="M213 583 H245 C280 583 300 631 355 631 C405 631 420 583 465 583 H662"/>
+    <path d="M736 583 H810"/>
+    <path d="M213 634 H245 C280 634 300 682 355 682 C405 682 420 634 465 634 H711"/>
+    <path d="M785 634 H810"/>
+  </g>
+  <g fill="#e0b24a">
+    <rect x="478" y="363" width="52" height="32" rx="10"/>
+    <rect x="527" y="414" width="52" height="32" rx="10"/>
+    <rect x="576" y="465" width="52" height="32" rx="10"/>
+    <rect x="625" y="516" width="52" height="32" rx="10"/>
+    <rect x="674" y="567" width="52" height="32" rx="10"/>
+    <rect x="723" y="618" width="52" height="32" rx="10"/>
+  </g>
+</svg>
