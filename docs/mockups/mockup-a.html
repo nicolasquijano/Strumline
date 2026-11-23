@@ -1,0 +1,82 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1000px;height:640px;background:#0b0d10;font-family:"Segoe UI Variable Text","Segoe UI",Inter,sans-serif;color:#e6e8eb;overflow:hidden}
+.app{width:1000px;height:640px;padding:20px 24px;display:flex;flex-direction:column;gap:16px}
+.top{display:flex;align-items:center;height:44px;gap:24px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px;letter-spacing:.2px}
+.seg{display:flex;background:#14181d;border:1px solid #232932;border-radius:10px;padding:3px}
+.seg span{padding:7px 18px;border-radius:7px;font-size:13px;color:#8b93a0;font-weight:500}
+.seg span.on{background:#e0b24a;color:#17130a;font-weight:600}
+.chip{padding:8px 14px;border:1px solid #232932;border-radius:9px;font-size:13px;color:#aab1bc;background:#14181d}
+.chip.on{border-color:#e0b24a;color:#e0b24a}
+.stats{margin-left:auto;display:flex;gap:26px;align-items:flex-end}
+.stat{display:flex;flex-direction:column;gap:2px}
+.stat small{font-size:11px;color:#7d8590;letter-spacing:.6px;text-transform:uppercase}
+.stat b{font-size:20px;font-weight:600;font-variant-numeric:tabular-nums}
+.stat b i{font-style:normal;font-size:12px;color:#7d8590;font-weight:400;margin-left:2px}
+.dot{width:9px;height:9px;border-radius:50%;background:#3ddc84;margin-bottom:8px}
+.main{display:flex;gap:16px;flex:1;min-height:0}
+.card{background:#12161b;border:1px solid #232932;border-radius:14px}
+.hero{width:240px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.lbl{font-size:11px;color:#7d8590;letter-spacing:.7px;text-transform:uppercase;font-weight:500}
+.notes{display:flex;flex-wrap:wrap;gap:8px}
+.n{font-size:26px;font-weight:600;padding:6px 12px;border-radius:9px;background:#1a2028;color:#e0b24a;font-variant-numeric:tabular-nums}
+.n.dim{color:#4a525d}
+.tuner{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+.bar{height:6px;background:#1a2028;border-radius:3px;position:relative}
+.bar i{position:absolute;left:50%;top:-4px;width:3px;height:14px;border-radius:2px;background:#3ddc84;margin-left:-6px}
+.roll{flex:1;padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.rollbox{flex:1;position:relative;border-radius:8px;background:#0e1216;overflow:hidden}
+.row{position:absolute;left:0;right:0;border-top:1px solid #2a323c}
+.row span{position:absolute;left:8px;top:2px;font-size:10px;color:#566070}
+.note{position:absolute;height:12px;border-radius:3px;background:#e0b24a}
+.bend{height:46px;border-radius:8px;background:#0e1216;position:relative;overflow:hidden}
+.bend svg{position:absolute;left:0;top:0;width:100%;height:100%}
+.ctrl{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:16px}
+.panel{padding:16px 18px;display:flex;flex-direction:column;gap:14px}
+.f{display:flex;flex-direction:column;gap:7px}
+.f .h{display:flex;justify-content:space-between;font-size:13px;color:#aab1bc}
+.f .h b{color:#e6e8eb;font-weight:600;font-variant-numeric:tabular-nums}
+.sl{height:4px;border-radius:2px;background:#232932;position:relative}
+.sl i{position:absolute;left:0;top:0;bottom:0;border-radius:2px;background:#e0b24a}
+.sl u{position:absolute;top:-6px;width:16px;height:16px;border-radius:50%;background:#e6e8eb;margin-left:-8px}
+.mini{display:flex;gap:6px}
+.mini span{flex:1;text-align:center;padding:7px 0;border-radius:8px;background:#161b21;border:1px solid #232932;font-size:12px;color:#8b93a0}
+.mini span.on{background:#2a2412;border-color:#e0b24a;color:#e0b24a}
+.meter{display:flex;gap:3px;height:8px}
+.meter i{flex:1;border-radius:2px;background:#1a2028}
+.meter i.g{background:#3ddc84}.meter i.y{background:#e0b24a}
+</style></head><body><div class="app">
+<div class="top">
+ <div class="brand"><svg width="30" height="30" viewBox="213 213 597 597"><rect x="213" y="213" width="597" height="597" rx="140" fill="#1d1e21"/><g fill="none" stroke="#e0b24a" stroke-width="22"><path d="M213 379H260C320 379 340 440 400 440 450 440 460 379 480 379"/><path d="M213 480H260C320 480 340 541 400 541 450 541 520 480 560 480"/></g><g fill="#e0b24a"><rect x="500" y="355" width="80" height="48" rx="14"/><rect x="580" y="456" width="80" height="48" rx="14"/><rect x="660" y="560" width="80" height="48" rx="14"/></g></svg>Strumline</div>
+ <div class="seg"><span>Mono</span><span>Poly</span><span class="on">Hybrid</span></div>
+ <div class="chip on">Thru</div><div class="chip">Test</div>
+ <div class="stats"><div class="stat"><small>Note</small><b>36<i>ms</i></b></div><div class="stat"><small>Chord</small><b>88<i>ms</i></b></div><div class="stat"><small>Model</small><b>12<i>%</i></b></div><div class="stat"><small>Voices</small><b>5<i>/ 6</i></b></div><div class="dot"></div></div>
+</div>
+<div class="main">
+ <div class="card hero"><div class="lbl">Playing now</div><div class="notes"><div class="n">E2</div><div class="n">B2</div><div class="n">E3</div><div class="n">G#3</div><div class="n">B3</div><div class="n dim">E4</div></div>
+ <div class="tuner"><div class="lbl">Tuner (one note)</div><div class="bar"><i></i></div><div style="display:flex;justify-content:space-between;font-size:12px;color:#7d8590"><span>-50</span><span style="color:#3ddc84">in tune</span><span>+50</span></div></div>
+ <div class="tuner"><div class="lbl">Input</div><div class="meter"><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="y"></i><i></i><i></i><i></i><i></i></div></div></div>
+ <div class="card roll"><div style="display:flex;justify-content:space-between"><div class="lbl">Notes · last 12 seconds</div><div class="lbl">Pitch bend</div></div><div class="rollbox" id="rb"></div><div class="bend"><svg viewBox="0 0 600 46" preserveAspectRatio="none"><line x1="0" y1="23" x2="600" y2="23" stroke="#222a33"/><path d="M0 23H380L395 12 420 9 450 18 470 23H600" fill="none" stroke="#e0b24a" stroke-width="1.6"/></svg></div></div>
+</div>
+<div class="ctrl">
+ <div class="card panel"><div class="lbl">Detection</div>
+  <div class="f"><div class="h"><span>Sensitivity</span><b>-54 dB</b></div><div class="sl"><i style="width:52%"></i><u style="left:52%"></u></div></div>
+  <div class="f"><div class="h"><span>Look-ahead</span><b>60 ms</b></div><div class="sl"><i style="width:50%"></i><u style="left:50%"></u></div></div>
+  <div class="mini"><span>Soft</span><span class="on">Normal</span><span>Hard</span><span style="flex:1.4">Fast</span><span style="flex:1.4">Saver</span></div></div>
+ <div class="card panel"><div class="lbl">Output</div>
+  <div class="f"><div class="h"><span>MIDI channel</span><b>1</b></div><div class="sl"><i style="width:0%"></i><u style="left:0%"></u></div></div>
+  <div class="f"><div class="h"><span>Transpose</span><b>0 st</b></div><div class="sl"><i style="width:50%"></i><u style="left:50%"></u></div></div>
+  <div class="mini"><span>Off</span><span class="on">Channel</span><span>MPE</span></div></div>
+ <div class="card panel"><div class="lbl">Monitor synth</div>
+  <div class="f"><div class="h"><span>Level</span><b>-12 dB</b></div><div class="sl"><i style="width:70%"></i><u style="left:70%"></u></div></div>
+  <div class="mini"><span>Sine</span><span class="on">Saw</span><span>Square</span></div>
+  <div class="mini"><span class="on">On</span><span>Panic</span><span>EN ▾</span></div></div>
+</div></div>
+<script>
+const rb=document.getElementById("rb");const W=rb.clientWidth||600,H=rb.clientHeight||260;
+const lo=38,hi=76,rows=hi-lo;const y=m=>H-(m-lo+1)/(rows+1)*H;
+for(let m=lo;m<=hi;m++){if(m%12==0){const d=document.createElement("div");d.className="row";d.style.top=y(m)+"px";d.innerHTML="<span>C"+(m/12-1)+"</span>";rb.appendChild(d)}}
+const ns=[[0.02,0.10,57],[0.12,0.20,60],[0.22,0.30,64],[0.32,0.40,69],[0.42,0.50,64],[0.52,0.60,60],[0.62,0.70,57],[0.74,0.97,40],[0.76,0.97,47],[0.78,0.97,52],[0.80,0.97,56],[0.82,0.97,59]];
+for(const [a,b,m] of ns){const d=document.createElement("div");d.className="note";d.style.left=a*W+"px";d.style.width=(b-a)*W+"px";d.style.top=(y(m)-6)+"px";rb.appendChild(d)}
+</script></body></html>

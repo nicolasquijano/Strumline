@@ -74,6 +74,14 @@ const std::unordered_map<std::string, std::string>& japaneseTable() {
     {"normal", "標準"},
     {"hard", "強"},
     {"CHORD MODEL NOT LOADED (ONNX Runtime is missing): ONE NOTE AT A TIME", "コードモデル未読込（ONNX Runtimeが見つかりません）：単音のみ"},
+    {"PLAYING NOW", "再生中の音"},
+    {"TUNER (ONE NOTE)", "チューナー（単音）"},
+    {"in tune", "合っています"},
+    {"Sensitivity", "感度"},
+    {"Look-ahead", "先読み"},
+    {"MIDI channel", "MIDIチャンネル"},
+    {"Transpose", "トランスポーズ"},
+    {"Level", "音量"},
     };
     return table;
 }

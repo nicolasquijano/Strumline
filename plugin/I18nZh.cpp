@@ -74,6 +74,14 @@ const std::unordered_map<std::string, std::string>& chineseTable() {
     {"normal", "正常"},
     {"hard", "硬"},
     {"CHORD MODEL NOT LOADED (ONNX Runtime is missing): ONE NOTE AT A TIME", "和弦模型未加载（缺少 ONNX Runtime）：一次只能一个音"},
+    {"PLAYING NOW", "当前音符"},
+    {"TUNER (ONE NOTE)", "调音器（单音）"},
+    {"in tune", "音准正确"},
+    {"Sensitivity", "灵敏度"},
+    {"Look-ahead", "前瞻"},
+    {"MIDI channel", "MIDI 通道"},
+    {"Transpose", "移调"},
+    {"Level", "音量"},
     };
     return table;
 }

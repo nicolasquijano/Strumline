@@ -312,3 +312,10 @@ Auto (sigue el idioma del sistema). Los textos del código están en inglés y `
 usuario. Los nombres de los parámetros (lo que ve el host) quedan en inglés. Los textos largos de los rótulos se acortaron para que entren en los controles (se vio en capturas de
 `strumline_shot <png> <idioma>`). **Las traducciones las escribí yo, sin revisión de hablantes nativos**: conviene que alguien las lea, sobre todo los tooltips. `strumline_check`
 comprueba que todos los idiomas traducen la misma cantidad de textos y que los que faltan caen al inglés.
+
+### Interfaz nueva (2026-11-23)
+Se reemplazó el estilo de relieve por un diseño plano y oscuro con el dorado como único acento (mockups en `docs/mockups/`: la opción A con las perillas de arco y el resplandor de la B).
+Lienzo de 1000 x 640 que el editor escala a cualquier tamaño de ventana (redimensionable, mantiene la proporción; mínimo 700 px de ancho, máximo 2000; `StrumlineEditor` ->
+`StrumlineView`). Arriba: logo, modo, THRU / TEST, presets y los cuatro números (latencia de la nota y del acorde, carga del modelo, voces); al centro: las notas que suenan con el afinador
+y el nivel de entrada, y el rollo de 12 segundos con el carril de bend; abajo: Detección (dos perillas de arco, velocity y Fast / Saver), Salida (canal, transposición y bend en sliders) y
+Sinte de monitoreo. Ocho textos nuevos en los diez idiomas. No se recuerda el tamaño de la ventana entre sesiones.

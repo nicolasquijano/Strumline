@@ -1,4 +1,4 @@
-// strumline_shot <file.png> [language code, e.g. es]: draws the editor after six seconds of the built-in test script, to see the interface without opening a host.
+// strumline_shot <file.png> [language code, e.g. es] [width in pixels]: draws the editor after six seconds of the built-in test script, to see the interface without opening a host.
 #include <cmath>
 
 #include <juce_audio_utils/juce_audio_utils.h>
@@ -18,7 +18,8 @@ int main(int argc, char** argv) {
     p.setTestRunning(true);
     std::unique_ptr<juce::AudioProcessorEditor> base(p.createEditor());
     auto* editor = dynamic_cast<StrumlineEditor*>(base.get());
-    editor->setSize(StrumlineEditor::kWidth, StrumlineEditor::kHeight);
+    const int width = argc > 3 ? std::atoi(argv[3]) : StrumlineEditor::kWidth;  // any size the window can have: the canvas is scaled
+    editor->setSize(width, width * StrumlineEditor::kHeight / StrumlineEditor::kWidth);
 
     juce::AudioBuffer<float> buffer(2, 512);
     juce::MidiBuffer midi;

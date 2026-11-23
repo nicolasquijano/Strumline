@@ -74,6 +74,14 @@ const std::unordered_map<std::string, std::string>& germanTable() {
     {"normal", "normal"},
     {"hard", "hart"},
     {"CHORD MODEL NOT LOADED (ONNX Runtime is missing): ONE NOTE AT A TIME", "AKKORDMODELL NICHT GELADEN (ONNX Runtime fehlt): EINE NOTE NACH DER ANDEREN"},
+    {"PLAYING NOW", "JETZT KLINGT"},
+    {"TUNER (ONE NOTE)", "STIMMGERÄT (EINE NOTE)"},
+    {"in tune", "gestimmt"},
+    {"Sensitivity", "Empfindlichkeit"},
+    {"Look-ahead", "Vorschau"},
+    {"MIDI channel", "MIDI-Kanal"},
+    {"Transpose", "Transponieren"},
+    {"Level", "Pegel"},
     };
     return table;
 }

@@ -74,6 +74,14 @@ const std::unordered_map<std::string, std::string>& portugueseTable() {
     {"normal", "normal"},
     {"hard", "forte"},
     {"CHORD MODEL NOT LOADED (ONNX Runtime is missing): ONE NOTE AT A TIME", "MODELO DE ACORDES NÃO CARREGADO (falta o ONNX Runtime): UMA NOTA POR VEZ"},
+    {"PLAYING NOW", "TOCANDO AGORA"},
+    {"TUNER (ONE NOTE)", "AFINADOR (UMA NOTA)"},
+    {"in tune", "afinada"},
+    {"Sensitivity", "Sensibilidade"},
+    {"Look-ahead", "Antecipação"},
+    {"MIDI channel", "Canal MIDI"},
+    {"Transpose", "Transpor"},
+    {"Level", "Nível"},
     };
     return table;
 }

@@ -74,6 +74,14 @@ const std::unordered_map<std::string, std::string>& koreanTable() {
     {"normal", "보통"},
     {"hard", "강"},
     {"CHORD MODEL NOT LOADED (ONNX Runtime is missing): ONE NOTE AT A TIME", "코드 모델 미로드 (ONNX Runtime 없음): 한 번에 한 음만"},
+    {"PLAYING NOW", "현재 연주 중"},
+    {"TUNER (ONE NOTE)", "튜너 (단음)"},
+    {"in tune", "정확함"},
+    {"Sensitivity", "감도"},
+    {"Look-ahead", "선행"},
+    {"MIDI channel", "MIDI 채널"},
+    {"Transpose", "트랜스포즈"},
+    {"Level", "음량"},
     };
     return table;
 }

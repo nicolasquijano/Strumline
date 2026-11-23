@@ -74,6 +74,14 @@ const std::unordered_map<std::string, std::string>& russianTable() {
     {"normal", "норма"},
     {"hard", "жёстко"},
     {"CHORD MODEL NOT LOADED (ONNX Runtime is missing): ONE NOTE AT A TIME", "МОДЕЛЬ АККОРДОВ НЕ ЗАГРУЖЕНА (нет ONNX Runtime): ПО ОДНОЙ НОТЕ"},
+    {"PLAYING NOW", "СЕЙЧАС ЗВУЧИТ"},
+    {"TUNER (ONE NOTE)", "ТЮНЕР (ОДНА НОТА)"},
+    {"in tune", "строй"},
+    {"Sensitivity", "Чувствительность"},
+    {"Look-ahead", "Упреждение"},
+    {"MIDI channel", "MIDI-канал"},
+    {"Transpose", "Транспонирование"},
+    {"Level", "Уровень"},
     };
     return table;
 }
