@@ -20,8 +20,7 @@ for b in "$vst3" "$app"; do [ -d "$b" ] || { echo "missing bundle: $b" >&2; exit
 
 echo "Packaging Strumline $full for macOS ($arch)"
 for b in "$vst3" "$app"; do
-  # The library goes inside Contents/MacOS next to the binary: sign it first, then the bundle.
-  for lib in "$b"/Contents/MacOS/*.dylib; do [ -f "$lib" ] && codesign --force --sign - "$lib"; done
+  # libonnxruntime.dylib sits in Contents/MacOS next to the binary; --deep signs it together with the bundle (Microsoft's own signature on it is replaced).
   codesign --force --deep --sign - "$b"
   echo "  $(basename "$b"): $(lipo -archs "$b/Contents/MacOS/"$(basename "$b" | sed 's/\..*//') 2>/dev/null | head -1)"
 done
