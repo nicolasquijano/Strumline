@@ -1,6 +1,6 @@
 # Packages a Strumline release into dist\: the zip (VST3 bundle + standalone + licence), the installer (when Inno Setup 6 or 7 is installed) and SHA256SUMS.txt.
 # The version is read from the top of CMakeLists.txt. See docs\RELEASING.md.
-param([switch]$SkipTests)
+param([switch]$SkipTests, [switch]$SkipBuild)  # -SkipBuild: the build was done already (the CI builds and tests first)
 $ErrorActionPreference = 'Stop'
 Set-Location $PSScriptRoot
 
@@ -11,9 +11,11 @@ if (-not $version) { throw 'could not read STRUMLINE_VERSION from CMakeLists.txt
 $full = "$version$suffix"
 Write-Host "Strumline $full"
 
-Write-Host '== build'
-& cmd /c "`"$PSScriptRoot\build.cmd`""
-if ($LASTEXITCODE -ne 0) { throw 'the build failed' }
+if (-not $SkipBuild) {
+    Write-Host '== build'
+    & cmd /c "`"$PSScriptRoot\build.cmd`""
+    if ($LASTEXITCODE -ne 0) { throw 'the build failed' }
+}
 
 if (-not $SkipTests) {
     Write-Host '== tests (strumline_check)'

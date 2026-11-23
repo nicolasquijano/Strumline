@@ -1,0 +1,101 @@
+name: CI
+
+# Builds Strumline and runs strumline_check on Windows, macOS and Linux for every push to master and every pull request. The packages are attached to the
+# run as artifacts so they can be tried without making a release (the release itself is made by release.yml when a tag is pushed).
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows:
+    name: Windows
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      # JUCE and ONNX Runtime are fetched into third_party/; keep them between runs.
+      - uses: actions/cache@v4
+        with:
+          path: third_party
+          key: third-party-${{ runner.os }}-${{ hashFiles('CMakeLists.txt', 'tools/fetch_onnxruntime.cmake') }}
+      - uses: ilammy/msvc-dev-cmd@v1
+      - name: Ninja
+        run: choco install ninja --no-progress -y
+      - name: ONNX Runtime
+        shell: bash
+        run: '[ -d third_party/onnxruntime/include ] || cmake -P tools/fetch_onnxruntime.cmake "$GITHUB_WORKSPACE/third_party/onnxruntime"'
+      - name: Build and check
+        shell: bash
+        run: |
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DSTRUMLINE_ORT_DIR="$GITHUB_WORKSPACE/third_party/onnxruntime"
+          cmake --build build --parallel
+          ./build/plugin/strumline_check.exe
+      - name: Install Inno Setup
+        shell: pwsh
+        run: choco install innosetup --no-progress -y
+      - name: Package
+        shell: pwsh
+        run: ./package.ps1 -SkipBuild -SkipTests
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-packages
+          path: dist/*
+
+  macos:
+    name: macOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: third_party
+          key: third-party-${{ runner.os }}-${{ hashFiles('CMakeLists.txt', 'tools/fetch_onnxruntime.cmake') }}
+      - name: Ninja
+        run: brew list ninja >/dev/null 2>&1 || brew install ninja
+      - name: ONNX Runtime
+        run: '[ -d third_party/onnxruntime/include ] || cmake -P tools/fetch_onnxruntime.cmake "$GITHUB_WORKSPACE/third_party/onnxruntime"'
+      - name: Build and check
+        run: |
+          STRUMLINE_ORT_DIR="$GITHUB_WORKSPACE/third_party/onnxruntime" ./build.sh
+          ./build/plugin/strumline_check
+      - name: Package
+        run: ./package-macos.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: macos-packages
+          path: dist/*
+
+  linux:
+    name: Linux
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: third_party
+          key: third-party-${{ runner.os }}-${{ hashFiles('CMakeLists.txt', 'tools/fetch_onnxruntime.cmake') }}
+      - name: Tools and libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build pkg-config libasound2-dev libjack-jackd2-dev ladspa-sdk libcurl4-openssl-dev libfreetype-dev libfontconfig1-dev libx11-dev libxcomposite-dev libxcursor-dev libxext-dev libxinerama-dev libxrandr-dev libxrender-dev libglu1-mesa-dev mesa-common-dev xvfb
+      - name: ONNX Runtime
+        run: '[ -d third_party/onnxruntime/include ] || cmake -P tools/fetch_onnxruntime.cmake "$GITHUB_WORKSPACE/third_party/onnxruntime"'
+      - name: Build and check
+        run: |
+          STRUMLINE_ORT_DIR="$GITHUB_WORKSPACE/third_party/onnxruntime" ./build.sh
+          xvfb-run -a ./build/plugin/strumline_check
+      - name: Package
+        run: ./package-linux.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux-packages
+          path: dist/*
