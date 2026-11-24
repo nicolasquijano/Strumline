@@ -2,7 +2,11 @@
 
 [English](README.md) · **Español**
 
-Guitarra a MIDI: un plugin que escucha una guitarra eléctrica común y toca lo que oye (notas sueltas y acordes, en tiempo real) como MIDI, para tocar sintetizadores o grabar MIDI en el DAW.
+**Plugin libre y de código abierto de guitarra a MIDI (VST3 y aplicación independiente) para Windows, Linux y macOS.** Escucha una guitarra eléctrica común, sin pastilla hexafónica, y toca lo que oye (notas sueltas y acordes, en tiempo real) como MIDI, para tocar sintetizadores en vivo o grabar MIDI en el DAW. Conversión de audio a MIDI y detección de altura polifónica, hecha con C++20, [JUCE](https://juce.com) y [Basic Pitch](https://github.com/spotify/basic-pitch) por ONNX Runtime.
+
+[Descargar](https://github.com/nicolasquijano/Strumline/releases) · [Plan y resultados](docs/PLAN_GUITAR_MIDI.md) · [Changelog](CHANGELOG.md)
+
+Palabras clave: guitarra a MIDI, convertidor de guitarra a MIDI, audio a MIDI, detección de altura polifónica, sinte de guitarra, MIDI de guitarra sin pastilla hexafónica, VST3, JUCE, Basic Pitch, ONNX Runtime.
 
 ![Strumline](docs/interface.png)
 
@@ -13,7 +17,7 @@ Guitarra a MIDI: un plugin que escucha una guitarra eléctrica común y toca lo 
 - **Tres modos:** *Mono* (una nota a la vez, lo más rápido), *Poly* (acordes, lo más exacto) e *Hybrid* (la primera nota rápido y el resto del acorde después).
 - Salida MIDI con canal, transposición, curva de velocity y pitch bend; un sinte de monitoreo (seno, sierra, cuadrada) para oír la conversión sin otro instrumento; THRU para que la guitarra siga a la salida; botón TEST y PANIC.
 - Interfaz plana y oscura que **se puede redimensionar**, con las notas que suenan, el afinador, el nivel de entrada, un rollo de notas de los últimos 12 segundos, presets y tooltips en todos los controles.
-- **Diez idiomas** (inglés, español, portugués, italiano, chino, francés, alemán, japonés, ruso y coreano), a elegir en la esquina del panel MONITOR o en Auto (el del sistema). Las traducciones no las revisó ningún hablante nativo.
+- **Veinte idiomas** (inglés, español, portugués, italiano, chino simplificado y tradicional, francés, alemán, japonés, ruso, coreano, turco, polaco, neerlandés, sueco, indonesio, vietnamita, ucraniano, finés, catalán e hindi), a elegir en la esquina del panel MONITOR o en Auto (el del sistema). Las traducciones no las revisó ningún hablante nativo.
 
 Estado: versión **0.1.0-beta**. Windows es lo que se probó a mano; Linux (x86_64) y macOS (Apple Silicon) se compilan y se prueban sin DAW en GitHub Actions, pero nadie los probó todavía en un DAW. Detalles en [CHANGELOG.md](CHANGELOG.md) y en el plan.
 

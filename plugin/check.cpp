@@ -93,9 +93,11 @@ int main() {
         using i18n::Language;
         const auto spanish = i18n::translationCount(Language::Spanish);
         bool same = spanish > 40;
-        for (auto l : {Language::Portuguese, Language::Italian, Language::Chinese, Language::French, Language::German, Language::Japanese, Language::Russian, Language::Korean})
+        for (auto l : {Language::Portuguese, Language::Italian, Language::Chinese, Language::French, Language::German, Language::Japanese, Language::Russian, Language::Korean,
+                       Language::TraditionalChinese, Language::Turkish, Language::Polish, Language::Dutch,
+                       Language::Swedish, Language::Indonesian, Language::Vietnamese, Language::Ukrainian, Language::Finnish, Language::Catalan, Language::Hindi})
             same = same && i18n::translationCount(l) == spanish;
-        check(same, "the nine languages translate the same number of texts");
+        check(same, "the twenty languages translate the same number of texts");
         i18n::useForSession(Language::Spanish);
         check(tr("PANIC") == juce::String::fromUTF8("P\xc3\x81NICO"), "Spanish: PANIC is PÁNICO");
         check(tr("a text that is not in any table") == "a text that is not in any table", "a text without a translation stays in English");
@@ -104,7 +106,12 @@ int main() {
         i18n::useForSession(Language::English);
         check(tr("PANIC") == "PANIC", "English: the text is the one in the source");
         check(i18n::fromSystemCode("es_AR") == Language::Spanish && i18n::fromSystemCode("pt-BR") == Language::Portuguese && i18n::fromSystemCode("zh_CN") == Language::Chinese &&
-                  i18n::fromSystemCode("ko") == Language::Korean && i18n::fromSystemCode("sv_SE") == Language::English,
+                  i18n::fromSystemCode("ko") == Language::Korean && i18n::fromSystemCode("da_DK") == Language::English && i18n::fromSystemCode("en_CA") == Language::English &&
+                  i18n::fromSystemCode("sv_SE") == Language::Swedish && i18n::fromSystemCode("id") == Language::Indonesian && i18n::fromSystemCode("vi_VN") == Language::Vietnamese &&
+                  i18n::fromSystemCode("uk_UA") == Language::Ukrainian && i18n::fromSystemCode("fi") == Language::Finnish && i18n::fromSystemCode("ca_ES") == Language::Catalan &&
+                  i18n::fromSystemCode("hi_IN") == Language::Hindi &&
+                  i18n::fromSystemCode("zh_TW") == Language::TraditionalChinese && i18n::fromSystemCode("zh-Hant-HK") == Language::TraditionalChinese &&
+                  i18n::fromSystemCode("tr_TR") == Language::Turkish && i18n::fromSystemCode("pl") == Language::Polish && i18n::fromSystemCode("nl_BE") == Language::Dutch,
               "system language codes map to the interface languages (English for the rest)");
     }
     {

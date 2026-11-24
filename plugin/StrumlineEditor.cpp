@@ -16,7 +16,8 @@ juce::Font font(float size, bool bold = false) { return juce::Font(juce::FontOpt
 // A small label in capitals with a little space between the letters.
 void caption(juce::Graphics& g, const juce::String& text, juce::Rectangle<int> r, juce::Justification j = juce::Justification::centredLeft, juce::Colour c = kMuted) {
     g.setColour(c);
-    g.setFont(font(11.0f, false).withExtraKerningFactor(0.07f));
+    // Devanagari letters join into one shape: spacing them apart would split the words (and it has no capitals anyway).
+    g.setFont(font(11.0f, false).withExtraKerningFactor(i18n::active() == i18n::Language::Hindi ? 0.0f : 0.07f));
     g.drawText(text.toUpperCase(), r, j);
 }
 
@@ -192,7 +193,7 @@ StrumlineView::StrumlineView(StrumlineProcessor& p)
         preset_.setSelectedId(0, juce::dontSendNotification);
     };
     panic_.onClick = [this] { p_.panic(); };
-    for (int l = 0; l <= int(i18n::Language::Korean); ++l) language_.addItem(i18n::languageName(i18n::Language(l)), l + 1);
+    for (int l = 0; l <= int(i18n::Language::Hindi); ++l) language_.addItem(i18n::languageName(i18n::Language(l)), l + 1);
     language_.setSelectedId(int(i18n::preference()) + 1, juce::dontSendNotification);
     language_.onChange = [this] {
         i18n::setPreference(i18n::Language(language_.getSelectedId() - 1));

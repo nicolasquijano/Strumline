@@ -5,6 +5,9 @@ All notable changes to Strumline. The format follows [Keep a Changelog](https://
 
 ## [Unreleased]
 
+### Added
+- Eleven more interface languages: **Traditional Chinese, Turkish, Polish, Dutch, Swedish, Indonesian, Vietnamese, Ukrainian, Finnish, Catalan and Hindi** (21 choices with Auto). Like the others, the translations have not been reviewed by native speakers. Auto picks Traditional Chinese for `zh_TW`, `zh_HK`, `zh_MO` and `zh-Hant`, and Simplified Chinese for the other Chinese locales.
+
 ## [0.1.0-beta] - 2026-11-23
 
 First release, for Windows (VST3 and standalone, tried by hand), Linux (x86_64) and macOS (Apple Silicon). The Linux and macOS packages are built and checked (`strumline_check`) by GitHub Actions but have not been tried in a DAW yet.

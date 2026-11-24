@@ -2,14 +2,15 @@
 
 **English** · [Español](README.es.md)
 
-Guitar to MIDI: a plug-in that listens to an ordinary electric guitar and plays the notes it hears (polyphonic, in real time) as MIDI.
-Born as an idea for [Schematic Amp Sim](../SchematicAmpSim) (the plug-in is a separate one, see the plan) and kept in its own folder.
+**Free, open-source guitar-to-MIDI plug-in (VST3 and standalone) for Windows, Linux and macOS.** It listens to an ordinary electric guitar, with no hexaphonic pickup, and plays what it hears, single notes and chords, as MIDI in real time, so you can play synths live or record MIDI in any VST3 host (tried in REAPER). Real-time audio-to-MIDI and polyphonic pitch detection, built with C++20, [JUCE](https://juce.com) and [Basic Pitch](https://github.com/spotify/basic-pitch) through ONNX Runtime.
 
-**The plan, the decisions and the results of each phase are in [docs/PLAN_GUITAR_MIDI.md](docs/PLAN_GUITAR_MIDI.md).**
+[Download](https://github.com/nicolasquijano/Strumline/releases) · [Plan and results](docs/PLAN_GUITAR_MIDI.md) · [Changelog](CHANGELOG.md)
 
-Logo: `docs/logo/strumline-icon.svg` (ícono con fondo) y `strumline-mark.svg` (solo la marca), prompts en `docs/LOGO_PROMPT.md`.
+Keywords: guitar to MIDI, guitar MIDI converter, audio to MIDI, polyphonic pitch detection, guitar synth, MIDI guitar without hexaphonic pickup, VST3, JUCE, Basic Pitch, ONNX Runtime.
 
-Languages: English, Spanish, Portuguese, Italian, Chinese, French, German, Japanese, Russian and Korean (chosen in the corner of the MONITOR panel, or Auto = the system language). The translations are not reviewed by native speakers.
+The plan, the decisions and the results of each phase are in [docs/PLAN_GUITAR_MIDI.md](docs/PLAN_GUITAR_MIDI.md). Logo: `docs/logo/strumline-icon.svg` and `strumline-mark.svg`, prompts in `docs/LOGO_PROMPT.md`.
+
+Languages: English, Spanish, Portuguese, Italian, Chinese (simplified and traditional), French, German, Japanese, Russian, Korean, Turkish, Polish, Dutch, Swedish, Indonesian, Vietnamese, Ukrainian, Finnish, Catalan and Hindi (chosen in the corner of the MONITOR panel, or Auto = the system language). The translations are not reviewed by native speakers.
 
 Status: the plug-in plays **single notes** (about 30-40 ms after the pluck, with pitch bend) and **chords** (Basic Pitch through ONNX Runtime, on its own thread: about 80-100 ms, see the plan for the numbers and the CPU cost). Modes: Mono, Poly (chords only) and Hybrid (the first note fast, the rest of the chord later). It needs `onnxruntime.dll` next to the plug-in (not in the repository, see the plan); without it Poly and Hybrid play as Mono. The TEST button plays a built-in arpeggio and chord to try the MIDI output without a guitar.
 
